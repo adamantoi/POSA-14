@@ -73,7 +73,15 @@ public class AndroidPlatformStrategy extends PlatformStrategy
     public void done()
     {	
         // TODO - You fill in here.
-    	mLatch.countDown();
+    	mActivity.get().runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				mLatch.countDown();
+			}
+		});
+    	
     }
 
     /** Barrier that waits for all the game threads to finish. */
