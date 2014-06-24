@@ -49,7 +49,7 @@ public class ThreadPoolDownloadService extends Service {
         // FixedThreadPool Executor that's configured to use
         // MAX_THREADS. Use a factory method in the Executors class.
 
-        mExecutor = null;
+        mExecutor = Executors.newFixedThreadPool(MAX_THREADS);
     }
 
     /**
@@ -74,7 +74,7 @@ public class ThreadPoolDownloadService extends Service {
         // invocation of the appropriate factory method in
         // DownloadUtils that makes a MessengerIntent.
 
-        return null;
+        return DownloadUtils.makeMessengerIntent(context, ThreadPoolDownloadService.class, handler, uri);
     }
 
     /**
@@ -96,7 +96,7 @@ public class ThreadPoolDownloadService extends Service {
         Runnable downloadRunnable = null;
 
         mExecutor.execute(downloadRunnable);
-      
+        
         // Tell the Android framework how to behave if this service is
         // interrupted.  In our case, we want to restart the service
         // then re-deliver the intent so that all files are eventually
