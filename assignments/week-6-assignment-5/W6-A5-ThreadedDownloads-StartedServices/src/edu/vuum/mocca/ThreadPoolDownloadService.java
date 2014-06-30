@@ -93,7 +93,15 @@ public class ThreadPoolDownloadService extends Service {
         // the uri in the intent and returns the file's pathname using
         // a Messenger who's Bundle key is defined by DownloadUtils.MESSENGER_KEY.
 
-        Runnable downloadRunnable = null;
+        Runnable downloadRunnable = new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Messenger mes = (Messenger) intent.getExtras().get(DownloadUtils.MESSENGER_KEY);
+		    	DownloadUtils.downloadAndRespond(getApplicationContext(), intent.getData(), mes);
+			}
+		};
 
         mExecutor.execute(downloadRunnable);
         
