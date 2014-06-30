@@ -19,7 +19,7 @@ public class SimpleSemaphore {
      */
     // TODO - you fill in here
 	// bisa jadikan final biar lock tidak berubah
-	// tes berubah
+	// tes berubah rubah lagi
 	private final Lock lock;
 
     /**
